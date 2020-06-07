@@ -1,49 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
-import fs from 'fs'
-import matter from 'gray-matter'
 
-const Home = ({ blogs }) => {
+export default function Home () {
   return (
     <div>
-      <h1>Hello</h1>
-      <ul>
-        {blogs.map(blog => (
-          <li key={blog.slug}>
-            <Link href={`blog/${blog.slug}`}>
-              <a>{blog.meta.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <h1> Welcome to my Site </h1>
+      <hr />
+      <h3>
+        <Link href='/blog'>
+          <a>Go to My Blog</a>
+        </Link>
+      </h3>
+      <h3>
+        <Link href='/articles'>
+          <a>Go to My Articles</a>
+        </Link>
+      </h3>
     </div>
   )
 }
-
-export async function getStaticProps () {
-  const files = fs.readdirSync(`${process.cwd()}/src/blog`)
-
-  const blogs = files.map(filename => {
-    const markdownWithMetadata = fs
-      .readFileSync(`src/blog/${filename}`)
-      .toString()
-
-    const res = matter(markdownWithMetadata)
-
-    return {
-      slug: filename.replace('.md', ''),
-      meta: {
-        ...res.data,
-        updatedAt: 'X'
-      }
-    }
-  })
-
-  return {
-    props: {
-      blogs
-    }
-  }
-}
-
-export default Home

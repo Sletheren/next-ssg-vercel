@@ -3,7 +3,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown/with-html'
 
-export default function BlogPostPage ({ content, meta }) {
+export default function SingleBlog ({ content, meta }) {
   return (
     <article>
       <ReactMarkdown escapeHtml={false} source={content} />
