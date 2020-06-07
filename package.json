@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "generate:html": "yarn build && next export"
+    "generate:html": "next build && next export"
   },
   "dependencies": {
     "gray-matter": "^4.0.2",
